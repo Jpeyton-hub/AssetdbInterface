@@ -10,4 +10,4 @@ This project is an exercise in interacting with a database through a node file o
 
 ---
 
-[Link to a full video tutorial]()
+[Link to a full video tutorial](https://drive.google.com/file/d/1Wb3jiJ2SkY7sV2mh6cGp0bsTbNiv4Z_Y/view)
