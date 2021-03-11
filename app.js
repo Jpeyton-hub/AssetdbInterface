@@ -44,6 +44,121 @@ function searchPrompt(){
     });
 };
 
+function modPrompt(){
+    inquire.prompt([
+        {
+            type: 'list',
+            message: 'How Would you like to modify the data?',
+            choices: ['add new employee', 'add new dept', 'add new role', 'update'],
+            name: 'action'
+        }
+    ]).then(response => {
+        switch (response.action) {
+            case 'add new employee':
+                newEmployeePrompt();
+                break;
+        
+            case 'add new dept':
+                newDeptPrompt();
+                break;
+
+            case 'add new role':
+                newRolePrompt();
+                break;
+
+            case 'update':
+                updatePrompt();    
+        }
+    });
+};
+
+function newEmployeePrompt() {
+    inquire.prompt([
+        {
+            type: 'input',
+            message: 'first name?',
+            name: 'firstname'
+        },
+        {
+            type: 'input',
+            message: 'last name?',
+            name: 'lastname'
+        },
+        {
+            type: 'input',
+            message: 'role id?',
+            name: 'roleid'
+        },
+        {
+            type: 'input',
+            message: 'manager id?',
+            name: 'manid'
+        }
+    ]).then(result => {
+        orm.addEmployee(result.firstname, result.lastname, result.roleid, result.manid);
+    });
+};
+function newDeptPrompt() {
+    inquire.prompt([
+        {
+            type: 'input',
+            message: 'dept name?',
+            name: 'name'
+        },
+        
+    ]).then(result => {
+        orm.addDept(result.name);
+    });
+};
+function newRolePrompt() {
+    inquire.prompt([
+        {
+            type: 'input',
+            message: 'title?',
+            name: 'title'
+        },
+        {
+            type: 'input',
+            message: 'salary?',
+            name: 'salary'
+        },
+        {
+            type: 'input',
+            message: 'dept id?',
+            name: 'deptid'
+        },
+    ]).then(result => {
+        orm.addRole(result.title, result.salary, result.deptid);
+    });
+};
+
+function updatePrompt(){
+    inquire.prompt([
+        {
+            type: 'list',
+            message: 'Would you like to update an employees manager or role?',
+            choices: ['manager', 'role'],
+            name: 'column'
+        },
+        {
+            type: 'input',
+            message: 'employee id?',
+            name: 'id'
+        },
+        {
+            type: 'input',
+            message: 'new role/manager id?',
+            name: 'newid'
+        }
+    ]).then(response => {
+        if (response.column === 'manager') {
+            orm.updateManager(response.id, response.newid);
+        } else {
+            orm.updateRoles(response.id, response.newid);
+        }
+    });
+};
+
 function initialPrompt(){
     inquire.prompt([
         {
@@ -53,7 +168,7 @@ function initialPrompt(){
             name: 'primary'
         }
     ]).then(response => {
-        response.primary === 'View' ? viewPrompt() : response.primary === 'Search' ? searchPrompt() : modPrompt
+        response.primary === 'View' ? viewPrompt() : response.primary === 'Search' ? searchPrompt() : modPrompt()
     });
 };
 
