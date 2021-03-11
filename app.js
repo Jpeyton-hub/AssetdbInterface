@@ -11,7 +11,7 @@ function viewPrompt(){
             name: 'table'
         }
     ]).then(result => {
-        if (result.table === 'Employees by Manager') {
+        if (result.table === 'employees by manager') {
             orm.viewEmployeesByMang();
         } else {
             orm.viewTable(result.table);

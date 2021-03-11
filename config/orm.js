@@ -24,7 +24,7 @@ const orm = {
     },
 
     viewEmployeesByMang(){
-        let sql = 'SELECT employee.first_name, employee.last_name AS employee_name FROM employee RIGHT JOIN employee ON employee.id = employee.manager_id';
+        let sql = 'SELECT employee.first_name, employee.last_name AS name FROM employee INNER JOIN employee ON employee.id = employee.manager_id';
         db.query(sql, (err, result) => {
             if(err) {
                 throw err;
