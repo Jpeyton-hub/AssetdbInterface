@@ -44,9 +44,35 @@ const orm = {
         });
     },
 
-    addDept(){},
+    addDept(name){
+        let sql = 'INSERT INTO department (name) VALUE (?)';
+        db.query(sql, [name], (err, result) => {
+            if (err) {
+                throw err;
+            }
+            console.log(`${name} added to Departments database!`);
+        });
+    },
 
-    addRole(){},
+    addRole(title, salary, deptId){
+        let sql = 'INSERT INTO role (title, salary, dept_id) VALUES (?, ?, ?)';
+        db.query(sql, [title, salary, deptId], (err, result) => {
+            if (err) {
+                throw err;
+            }
+            console.log(`${title} added to Roles database!`);
+        });
+    },
+
+    updateRoles(id, role){
+        let sql = 'UPDATE employee SET role_id = ? WHERE id = ?';
+        db.query(sql, [role, id], (err, result) => {
+            if (err) {
+                throw err;
+            }
+            console.log('role updated')
+        });
+    }
 
 
 };
