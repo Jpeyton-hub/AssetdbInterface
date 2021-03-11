@@ -7,7 +7,7 @@ const orm = {
     viewTable(table){
         let sql = 'SELECT * FROM ??';
         db.query(sql, [table], (err, response) => {
-            if(!err) {
+            if(err) {
                 throw err;
             }
             console.table(response);
@@ -16,6 +16,15 @@ const orm = {
 
     viewTableSearch(table, key, value){
         let sql = 'SELECT * FROM ?? WHERE ?? = ?';
-        db.query()
-    }
+        db.query(sql, [table, key, value], (err, response) => {
+            if(err) {
+                throw err;
+            }
+            console.table(response);
+        });
+    },
+
+    viewJoined(){}
 };
+
+module.exports = orm;
