@@ -12,10 +12,9 @@ CREATE TABLE role
 (
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(225),
-    salary FLOAT(100),
+    salary FLOAT,
     dept_id INT,
-    PRIMARY KEY(id),
-    FOREIGN KEY(dept_id) REFERENCES department(id)  
+    PRIMARY KEY(id),  
 );
 
 CREATE TABLE employee
@@ -25,8 +24,7 @@ CREATE TABLE employee
     last_name VARCHAR(255),
     role_id INT,
     manager_id INT,
-    PRIMARY KEY(id),
-    FOREIGN KEY(role_id) REFERENCES role(id)   
+    PRIMARY KEY(id),   
 );
 
 
