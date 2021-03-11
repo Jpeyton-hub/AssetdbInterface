@@ -1,4 +1,3 @@
-const inquire = require('inquirer');
 const mysql = require('mysql');
 const db = require('./connection');
 const cTable = require('console.table');
@@ -71,6 +70,16 @@ const orm = {
                 throw err;
             }
             console.log('role updated')
+        });
+    },
+
+    updateManager(id, manager){
+        let sql = 'UPDATE employee SET manager_id = ? WHERE id = ?';
+        db.query(sql, [manager, id], (err, result) => {
+            if (err) {
+                throw err;
+            }
+            console.log('manager updated')
         });
     }
 
