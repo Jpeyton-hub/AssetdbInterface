@@ -16,6 +16,7 @@ function viewPrompt(){
         } else {
             orm.viewTable(result.table);
         }
+        initialPrompt();
     });
 };
 
@@ -40,7 +41,8 @@ function searchPrompt(){
     ]).then(response => {
         let key = response.key.trim();
         let value = response.value.trim().toLowerCase();
-        orm.viewTableSearch(response.table, key, value)
+        orm.viewTableSearch(response.table, key, value);
+        initialPrompt();
     });
 };
 
@@ -68,7 +70,8 @@ function modPrompt(){
 
             case 'update':
                 updatePrompt();    
-        }
+        };
+        initialPrompt();
     });
 };
 
@@ -96,6 +99,7 @@ function newEmployeePrompt() {
         }
     ]).then(result => {
         orm.addEmployee(result.firstname, result.lastname, result.roleid, result.manid);
+        initialPrompt();
     });
 };
 function newDeptPrompt() {
@@ -108,6 +112,7 @@ function newDeptPrompt() {
         
     ]).then(result => {
         orm.addDept(result.name);
+        initialPrompt();
     });
 };
 function newRolePrompt() {
@@ -129,6 +134,7 @@ function newRolePrompt() {
         },
     ]).then(result => {
         orm.addRole(result.title, result.salary, result.deptid);
+        initialPrompt();
     });
 };
 
@@ -155,7 +161,8 @@ function updatePrompt(){
             orm.updateManager(response.id, response.newid);
         } else {
             orm.updateRoles(response.id, response.newid);
-        }
+        };
+        initialPrompt();
     });
 };
 
